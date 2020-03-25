@@ -11,7 +11,6 @@ export class GroupFinderComponent implements OnInit {
 
   ngOnInit() {
   }
-
   public joinGroup(): void {
 
   }
