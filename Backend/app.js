@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var groupRouter = require('./routes/groups');
 
 const jwt = require('./_helpers/jwt');
 const cors = require('cors');
@@ -27,6 +28,7 @@ app.use(jwt());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/groups', groupRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -12,10 +12,13 @@ function jwt() {
         path: [
             // public routes that don't require authentication
             '/users/register',
-            '/users/authenticate'
+            '/users/authenticate',
+            '/groups/joingroup',
+            '/groups/addgroup',
+            '/groups/allgroups',
+            '/groups/getgroup'
         ]
     });}
-
 
 async function isRevoked(req, payload, done) {
     // console.log("isRevoked():", req.body, payload);
