@@ -1,0 +1,11 @@
+.buttons {
+  text-align: center;
+}
+
+.join-button {
+  display: inline-block;
+}
+
+.create-button {
+  display: inline-block;
+}
