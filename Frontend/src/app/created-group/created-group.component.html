@@ -1,1 +1,13 @@
-<p>created-group works!</p>
+<div class="header">
+  <h1> YOUR GROUP</h1>
+  <h3> secret code:</h3>
+    <div class="code">
+      <p> {{generateCode()}}</p>
+    </div>
+</div>
+<br>
+<div class="buttons">
+  <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="leave()">LEAVE</button>
+  <br>
+  <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="start()">START</button>
+</div>

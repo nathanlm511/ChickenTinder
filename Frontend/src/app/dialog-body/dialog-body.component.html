@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>ENTER GROUP CODE</h1>
+
+<mat-dialog-content [formGroup]="code">
+  <mat-form-field>
+    <input matInput
+           placeholder="Group code"
+           formControlName="Group code">
+  </mat-form-field> <br>
+  <button mat-raised-button color="primary" (click)="join()">JOIN</button>
+</mat-dialog-content>

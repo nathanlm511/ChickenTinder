@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { GroupFinderComponent } from './group-finder/group-finder.component';
+import { MatDialogModule} from '@angular/material/dialog';
 import { CreatedGroupComponent } from './created-group/created-group.component';
 import { TinderComponent } from './tinder/tinder.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +19,8 @@ import {MatInputModule} from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogBodyComponent } from './dialog-body/dialog-body.component';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     GroupFinderComponent,
     CreatedGroupComponent,
     TinderComponent,
+    DialogBodyComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,9 +44,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSnackBarModule,
     MaterialModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogBodyComponent]
 })
 export class AppModule { }

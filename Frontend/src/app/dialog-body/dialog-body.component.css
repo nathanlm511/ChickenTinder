@@ -1,0 +1,8 @@
+h1 {
+  text-align: center;
+}
+mat-dialog-content {
+  text-align: center;
+  font-size: 25px;
+  width: auto;
+}

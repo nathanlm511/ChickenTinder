@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {DialogBodyComponent} from '../dialog-body/dialog-body.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-group-finder',
@@ -7,15 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupFinderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private matDialog: MatDialog, private router: Router) {
+
+  }
 
   ngOnInit() {
   }
-  public joinGroup(): void {
 
+
+
+  public joinGroup(): void {
+  const dialogRef = this.matDialog.open(DialogBodyComponent, {
+    width: '450px',
+    height: '250px'
+  });
   }
 
   public createGroup(): void {
-
+    this.router.navigate(['group']);
   }
 }

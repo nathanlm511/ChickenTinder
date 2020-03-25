@@ -1,0 +1,18 @@
+
+.header {
+  text-align: center;
+}
+.code {
+  font-size: 40px;
+  background-color: white;
+  color: blue;
+}
+
+.buttons {
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+ }
