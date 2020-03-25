@@ -1,11 +1,19 @@
+
 .buttons {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 750px;
+  justify-content: center;
 }
 
 .join-button {
   display: inline-block;
+  align-self: flex-end;
+  margin: auto;
 }
 
 .create-button {
   display: inline-block;
+  margin: auto;
+
 }
