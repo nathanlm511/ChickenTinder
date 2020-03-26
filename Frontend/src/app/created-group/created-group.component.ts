@@ -17,6 +17,10 @@ export class CreatedGroupComponent implements OnInit {
     return code;
   }
 
+  get group() {
+    return JSON.parse(localStorage.getItem('currentGroup'));
+  }
+
   public start(): void {
 
   }

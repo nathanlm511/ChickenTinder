@@ -2,7 +2,7 @@
   <h1> YOUR GROUP</h1>
   <h3> secret code:</h3>
     <div class="code">
-      <p> {{generateCode()}}</p>
+      <p> {{group.passcode}}</p>
     </div>
 </div>
 <br>
@@ -11,3 +11,11 @@
   <br>
   <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="start()">START</button>
 </div>
+
+<div class ="usernames">
+  <li *ngFor="let user of group.users">
+    {{ user }}
+  </li>
+</div>
+
+

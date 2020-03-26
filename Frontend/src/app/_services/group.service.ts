@@ -12,20 +12,28 @@ export class GroupService {
 
   }
 
-  createGroup(username: string): Observable<any> {
-    return this.http.post<any>(`http://localhost:3000/groups/addgroup`, { username })
-      .pipe(map(user => {
-        if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          //this.currentUserSubject.next(user);
+  createGroup(host: string): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/groups/addgroup`, { host })
+      .pipe(map(group => {
+        if (group && group.passcode) {
+          localStorage.setItem('currentGroup', JSON.stringify(group));
         }
-
-        return user;
+        return group;
       }));
   }
 
-  joinGroup() {
+  joinGroup(username: string, passcode: string): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/groups/joingroup`, { username, passcode })
+      .pipe(map(group => {
+        if (group && group.passcode) {
+          localStorage.setItem('currentGroup', JSON.stringify(group));
+          return group;
+        }
+        else {
+          return {flag: "failed"};
+        }
 
+      }));
   }
 
   getGroup() {
