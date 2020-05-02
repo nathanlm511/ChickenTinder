@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from '../_models/user';
+import {Group} from '../_models/group';
 
 import {HttpClient} from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -36,8 +37,54 @@ export class GroupService {
       }));
   }
 
-  getGroup() {
+  getGroup(passcode: string): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/groups/getgroup`, {passcode})
+      .pipe(map((group: Group) => {
+        if (group && group.passcode) {
+          localStorage.setItem('currentGroup', JSON.stringify(group));
+          return group;
+        }
+        else {
+          return {flag: "failed"};
+        }
+      }));
+  }
 
+  startGroup(passcode: string): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/groups/startgroup`, {passcode})
+      .pipe(map((group: Group) => {
+        if (group && group.passcode) {
+          localStorage.setItem('currentGroup', JSON.stringify(group));
+          return group;
+        } else {
+          return {flag: "failed"};
+        }
+      }));
+  }
+
+  addVote(passcode: string, id: string): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/groups/addvote`, {id, passcode})
+      .pipe(map(group => {
+        if (group && group.passcode) {
+          localStorage.setItem('currentGroup', JSON.stringify(group));
+          return group;
+        } else {
+          return {flag: "failed"};
+        }
+
+      }));
+  }
+
+  setWinner(passcode: string, winner: string): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/groups/setwinner`, {winner, passcode})
+      .pipe(map(group => {
+        if (group && group.passcode) {
+          localStorage.setItem('currentGroup', JSON.stringify(group));
+          return group;
+        } else {
+          return {flag: "failed"};
+        }
+      }));
   }
 }
 

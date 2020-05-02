@@ -1,6 +1,10 @@
 const SimulatedDB = require('../_helpers/dbsimulator');
 const jwt = require('jsonwebtoken');
 const config = require('../config.json');
+const bcrypt = require('bcryptjs');
+
+const db = require('../_helpers/database');
+const User = db.User;
 
 
 
@@ -13,45 +17,52 @@ module.exports = {
 
 async function authenticate({ username, password }) {
 
-
-
-    //Here we will switch to  real db in the next HW.
-    //Currently simulating it.
-    const user = await SimulatedDB.findUser(username);
-    //If user is found in the 'database'. In the next homework we will hash the password.
-    console.log("service.authenticate():", user.password === password);
-    if (user && user.password === password) {
-        const { password, ...userWithoutPassword } = user;
-        const token = jwt.sign({ sub: user.username, role: user.role }, config.secret);
-        console.log("service.authenticate():", token);
+    const user = await User.findOne({ username });
+    if (user && bcrypt.compareSync(password, user.hash)) {
+        const { hash, ...userWithoutHash } = user.toObject();
+        const token = jwt.sign({ sub: user.id, role: user.role }, config.secret);
         return {
-            ...userWithoutPassword,
+            ...userWithoutHash,
             token
         };
     }
 }
 
 async function getAllUsers() {
-    //Returning the result of the promise. In the next homework we will make sure no passwords are sent back to the user.
-    return await SimulatedDB.getAllUsers();
+    return await User.find().select('-hash');
 }
 
 
 
 async function getByUsername(username) {
-
     return await SimulatedDB.findUser(username);
 }
 
-async function addUser(user) {
-
-
-    if(await getByUsername(user.username)){
-        throw 'Username "' + user.username + '" is already taken';
+async function addUser(userParam) {
+    // validate
+    if (await User.findOne({ username: userParam.username })) {
+        return null;
     }
 
+    const user = new User(userParam);
 
-    return SimulatedDB.addUser(user);
+    // hash password
+    if (userParam.password) {
+        user.hash = bcrypt.hashSync(userParam.password, 10);
+    }
+
+    console.log(user);
+
+    // save user
+    await user.save();
+
+    const { hash, ...userWithoutHash } = user.toObject();
+    const token = jwt.sign({ sub: user.id, role: user.role }, config.secret);
+
+    return {
+        ...userWithoutHash,
+        token
+    };
 
 }
 

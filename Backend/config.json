@@ -1,4 +1,6 @@
 {
 
-  "secret": "a secret that no one should guess"
+  "secret": "a secret that no one should guess",
+  "connectionString": "mongodb://localhost/ChickenTinder"
+
 }

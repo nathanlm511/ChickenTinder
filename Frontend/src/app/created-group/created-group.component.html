@@ -9,10 +9,13 @@
 <div class="buttons">
   <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="leave()">LEAVE</button>
   <br>
-  <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="start()">START</button>
+  <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="start()" *ngIf="isHost">START</button>
 </div>
 
+<div class="host">Host:{{group.host}}</div>
+
 <div class ="usernames">
+  Users:
   <li *ngFor="let user of group.users">
     {{ user }}
   </li>

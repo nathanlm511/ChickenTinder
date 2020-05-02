@@ -1,1 +1,15 @@
 <p>tinder works!</p>
+
+<p>{{passcode}}</p>
+
+<p>{{greatestRestaurant}} is winning with {{greatestVotes}} out of {{numberOfUsers}}</p>
+
+<app-restaurant [id]="restaurantId"></app-restaurant>
+
+
+
+<div *ngFor="let vote of votes">
+  id: {{ vote.id }} | name: {{ vote.name}} | numVotes: {{ vote.numVotes }}
+</div>
+
+<<button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="like()">Like</button>

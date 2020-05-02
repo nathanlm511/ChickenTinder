@@ -5,14 +5,17 @@ module.exports = {
     createGroup,
     getAllGroups,
     joinGroup,
-    getGroup
+    getGroup,
+    startGroup,
+    addVote,
+    setWinner
 };
 
 
 function joinGroup(req, res, next) {
 
     groupService.joinGroup(req.body)
-        .then(user => user ? res.json(user) : res.status(299).json({ message: 'Incorrect Passcode' }))
+        .then(group => res.json(group))
         .catch(err => next(err));
 }
 
@@ -31,8 +34,25 @@ function getGroup(req, res, next) {
 }
 
 function createGroup(req, res, next) {
-
     groupService.addGroup(req.body)
+        .then(group => res.json(group))
+        .catch(err => next(err));
+}
+
+function startGroup(req, res, next) {
+    groupService.startGroup(req.body)
+        .then(group => res.json(group))
+        .catch(err => next(err));
+}
+
+function addVote(req, res, next) {
+    groupService.addVote(req.body)
+        .then(group => res.json(group))
+        .catch(err => next(err));
+}
+
+function setWinner(req, res, next) {
+    groupService.setWinner(req.body)
         .then(group => res.json(group))
         .catch(err => next(err));
 }

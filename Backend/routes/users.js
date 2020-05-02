@@ -6,6 +6,6 @@ const Role = require('../_helpers/role');
 
 router.post('/authenticate', userController.authenticate);
 router.post('/register', userController.register);
-router.get('/allusers', authorize(Role.admin),userController.getAllUsers);
+router.get('/allusers', userController.getAllUsers);
 
 module.exports = router;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {DialogBodyComponent} from '../dialog-body/dialog-body.component';
 import {Router} from '@angular/router';
+import {YelpService} from '../_services/yelp.service';
 
 import {GroupService} from '../_services/group.service';
 import {AuthService} from '../_services/auth.service';
@@ -15,7 +16,7 @@ import {NotificationService} from '../_services/notification.service';
 export class GroupFinderComponent implements OnInit {
 
   constructor(private matDialog: MatDialog, private router: Router,
-              private groupService: GroupService) {
+              private groupService: GroupService, private yelpService: YelpService) {
 
   }
 
@@ -32,7 +33,9 @@ export class GroupFinderComponent implements OnInit {
   public createGroup(): void {
     this.groupService.createGroup(JSON.parse(localStorage.getItem('currentUser')).username)
       .subscribe(group => {
+        this.yelpService.getYelpIds(JSON.parse(localStorage.getItem('currentGroup')).passcode)
+          .then(data => data.subscribe(() => console.log("sent ids")));
+        this.router.navigate(['group']);
       });
-    this.router.navigate(['group']);
   }
 }

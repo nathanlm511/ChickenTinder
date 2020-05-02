@@ -2,6 +2,8 @@ const expressJwt = require('express-jwt');
 const userService = require('../services/user.service');
 const config = require('../config.json');
 
+const pathToRegexp = require('path-to-regexp');
+
 module.exports = jwt;
 
 //expressJwt(...) returns a function that takes three paramaters req, res and next. Thus, this will register as middleware.
@@ -13,10 +15,16 @@ function jwt() {
             // public routes that don't require authentication
             '/users/register',
             '/users/authenticate',
+            '/users/allusers',
             '/groups/joingroup',
             '/groups/addgroup',
             '/groups/allgroups',
-            '/groups/getgroup'
+            '/groups/getgroup',
+            '/groups/startgroup',
+            pathToRegexp('/yelp/getIds*'),
+            '/yelp/getInfo',
+            '/groups/addvote',
+            '/groups/setwinner'
         ]
     });}
 

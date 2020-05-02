@@ -16,10 +16,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogBodyComponent } from './dialog-body/dialog-body.component';
+
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { WinnerComponent } from './winner/winner.component';
 
 
 @NgModule({
@@ -31,6 +35,8 @@ import { DialogBodyComponent } from './dialog-body/dialog-body.component';
     CreatedGroupComponent,
     TinderComponent,
     DialogBodyComponent,
+    RestaurantComponent,
+    WinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,8 +53,11 @@ import { DialogBodyComponent } from './dialog-body/dialog-body.component';
     MatInputModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent],
   entryComponents: [DialogBodyComponent]
 })
-export class AppModule { }
+export class AppModule {
+  private static JwtInterceptor: any;
+}

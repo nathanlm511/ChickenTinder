@@ -23,8 +23,7 @@ function getAllUsers(req, res, next) {
 }
 
 function register(req, res, next) {
-
     userService.addUser(req.body)
-        .then(() => res.json({}))
+        .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username already taken' }))
         .catch(err => next(err));
 }
