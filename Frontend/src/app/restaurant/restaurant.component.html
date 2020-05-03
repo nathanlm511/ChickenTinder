@@ -1,5 +1,54 @@
-<div class="container">
-  <p>restaurant works!</p>
-  <p>{{id}}</p>
-  <p>{{info.name}}</p>
+<div class="page">
+  <mat-card class="card">
+    <div class="image">
+      <button mat-raised-button color="primary" (click)="clickLeft()" [disabled]="!canClickLeft()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <img src="{{image}}" width="400" height="400" style="padding:15px;">
+      <button mat-raised-button color="primary" (click)="clickRight()" [disabled]="!canClickRight()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+
+
+    </div>
+
+    <div class="text">
+        <div class="info">
+          <h1> <b>{{info.name}}</b> </h1>
+          <div class="loc">
+            <mat-icon>place</mat-icon>
+            <h3> {{info.location.city}}, {{info.location.state}} </h3>
+          </div>
+        </div>
+        <div class="desc">
+          <div class="rating">
+            <p>{{info.rating}}</p>
+            <div *ngFor="let num of stars">
+              <mat-icon>star</mat-icon>
+            </div>
+            <div *ngFor="let num of halfstars">
+              <mat-icon>star_half</mat-icon>
+            </div>
+            <div *ngFor="let num of empty">
+              <mat-icon>star_outline</mat-icon>
+            </div>
+            <p>({{info.review_count}})   -   {{info.price}}   -   {{info.categories[0].title}}</p>
+          </div>
+          <p>{{info.location.display_address}}</p>
+          <div class="phone">
+            <mat-icon>phone</mat-icon>
+            <p>{{info.display_phone}}</p>
+          </div>
+          <div *ngIf="isClosed()">
+            <p style="color:green">Open</p>
+          </div>
+          <div *ngIf="!isClosed()">
+            <p style="color:red">Closed</p>
+          </div>
+        </div>
+
+    </div>
+  </mat-card>
+
+
 </div>

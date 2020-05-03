@@ -27,7 +27,7 @@ export class TinderComponent implements OnInit {
     this.votes = JSON.parse(localStorage.getItem('currentGroup')).votes;
     this.numberOfUsers = JSON.parse(localStorage.getItem('currentGroup')).users.length + 1;
     this.passcode = JSON.parse(localStorage.getItem('currentGroup')).passcode;
-    this.restaurantId = JSON.parse(localStorage.getItem('currentGroup')).votes[2].id;
+    this.restaurantId = JSON.parse(localStorage.getItem('currentGroup')).votes[5].id;
 
     const loop = interval(5000)
       .pipe(
