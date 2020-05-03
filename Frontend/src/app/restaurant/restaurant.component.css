@@ -1,3 +1,45 @@
-.container {
-  background-color: red;
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 10px 10px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.card {
+}
+
+.image  {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.text{
+  font-family: Verdana;
+}
+
+.info {
+}
+.loc {
+  display: flex;
+  flex-direction: row;
+}
+
+.desc {
+  padding:  10px 10px 10px 10px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  font-size: 12pt;
+}
+
+.phone {
+  display: flex;
+  flex-direction: row;
 }
