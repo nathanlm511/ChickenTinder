@@ -62,4 +62,8 @@ export class TinderComponent implements OnInit {
       });
   }
 
+  dislike() {
+    console.log("Disliked " + this.votes[0].name);
+  }
+
 }
