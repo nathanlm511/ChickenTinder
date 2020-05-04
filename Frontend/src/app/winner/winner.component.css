@@ -9,8 +9,8 @@
   font-size: 50pt;
 }
 
-.img {
-  padding: 10px 10px 10px 10px;
+.image {
+  padding-top: 5%;
 }
 .page {
   display: flex;
