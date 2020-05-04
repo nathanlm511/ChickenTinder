@@ -1,1 +1,19 @@
-<p>{{winner}} won!</p>
+<div class="page">
+  <mat-card class="card">
+    <div class="winner">
+      It's a Match!
+      <img src="{{info.image_url}}" width="400" height="400" style="padding:15px;">
+    </div>
+
+
+    <div class="info">
+      <h1> <b>{{info.name}}</b> </h1>
+      <div class="loc">
+        <mat-icon>place</mat-icon>
+        <h3> {{info.location.display_address}} </h3>
+      </div>
+    </div>
+  </mat-card>
+
+</div>
+

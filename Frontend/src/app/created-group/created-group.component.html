@@ -1,24 +1,50 @@
-<div class="header">
-  <h1> YOUR GROUP</h1>
-  <h3> secret code:</h3>
-    <div class="code">
-      <p> {{group.passcode}}</p>
+<div class="page">
+  <mat-card class="card">
+    <div class="header">
+      <div class="group">
+        YOUR GROUP
+      </div>
+      <mat-divider></mat-divider>
+      <div class="code">
+        SECRET CODE:
+        <div class="num">
+          {{group.passcode}}
+        </div>
+      </div>
+      <div class="desc">
+        Tell your friends to enter this code to join your group!
+      </div>
+      <div class="wait">
+        Waiting for people to join...
+      </div>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
-</div>
-<br>
-<div class="buttons">
-  <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="leave()">LEAVE</button>
-  <br>
-  <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="start()" *ngIf="isHost">START</button>
+    <br>
+
+    <div class="group">
+      <div class="host">
+        <mat-icon>star</mat-icon>
+        Host: {{group.host}} (You)
+      </div>
+
+      <div class ="usernames">
+        <div *ngFor="let user of group.users">
+          <div class="user">
+            <mat-icon>person</mat-icon>
+            {{ user }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="leave()">LEAVE</button>
+      <br>
+      <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="start()" *ngIf="isHost">START</button>
+    </div>
+
+
+  </mat-card>
 </div>
 
-<div class="host">Host:{{group.host}}</div>
-
-<div class ="usernames">
-  Users:
-  <li *ngFor="let user of group.users">
-    {{ user }}
-  </li>
-</div>
 
 
