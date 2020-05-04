@@ -22,6 +22,7 @@ export class RestaurantComponent implements OnInit {
     return this._id;
 
   }
+
   info;
   empty;
   stars;
