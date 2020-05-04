@@ -44,7 +44,7 @@ export class TinderComponent implements OnInit {
             this.greatestVotes = curVotes[i].numVotes;
           }
           if (curVotes[i].numVotes > this.numberOfUsers / 2) {
-            this.groupService.setWinner(JSON.parse(localStorage.getItem('currentGroup')).passcode, curVotes[i].name)
+            this.groupService.setWinner(JSON.parse(localStorage.getItem('currentGroup')).passcode, curVotes[i])
               .subscribe(() => {
                 loop.unsubscribe();
                 this.router.navigate(['winner']);

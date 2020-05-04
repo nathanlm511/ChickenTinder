@@ -9,7 +9,7 @@ const schema = new Schema({
         users: { type: [String]},
         votes: { type: [ {id: {type: String}, name: {type: String} , numVotes: {type: Number }}] },
         started: { type: Boolean},
-        winner: {type: String}
+        winner: {type: Object}
     }
 );
 

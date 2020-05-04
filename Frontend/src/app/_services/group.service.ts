@@ -75,7 +75,7 @@ export class GroupService {
       }));
   }
 
-  setWinner(passcode: string, winner: string): Observable<any> {
+  setWinner(passcode: string, winner: object): Observable<any> {
     return this.http.post<any>(`http://localhost:3000/groups/setwinner`, {winner, passcode})
       .pipe(map(group => {
         if (group && group.passcode) {
