@@ -8,7 +8,20 @@ import {YelpService} from '../_services/yelp.service';
   styleUrls: ['./restaurant.component.css']
 })
 export class RestaurantComponent implements OnInit {
-  @Input() id: number;
+  private _id: string;
+
+  @Input() set id(value: string) {
+
+    this._id = value;
+    this.ngOnInit();
+
+  }
+
+  get id(): string {
+
+    return this._id;
+
+  }
   info;
   empty;
   stars;
