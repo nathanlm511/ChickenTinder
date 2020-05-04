@@ -1,0 +1,25 @@
+.num {
+  display: flex;
+  font-size: 40px;
+  font-family: Impact;
+  background-color: white;
+  color: blue;
+  padding-top: 20px;
+  letter-spacing: 5px;
+}
+
+.code {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font-family: Impact;
+  padding: 20px;
+}
+.desc {
+  display: flex;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 10pt;
+  text-align: center;
+  padding-left: 20px;
+}
+

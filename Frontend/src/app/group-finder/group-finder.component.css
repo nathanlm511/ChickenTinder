@@ -1,19 +1,35 @@
+.text {
+  font-family: "Brush Script MT";
+  font-size: 75pt;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+  height: 25%;
+  padding: 3%;
+
+}
 
 .buttons {
   display: flex;
-  flex-direction: column;
-  height: 750px;
+  flex-direction: row;
+  height: 10%;
   justify-content: center;
 }
 
 .join-button {
-  display: inline-block;
-  align-self: flex-end;
+  display: flex;
   margin: auto;
 }
 
 .create-button {
-  display: inline-block;
+  display: flex;
   margin: auto;
 
 }
+
