@@ -81,10 +81,12 @@ export class TinderComponent implements OnInit {
         console.log("Liked " +  this.votes[this.restInd].name);
       });
     this.restInd = this.restIndCalc();
+    this.restaurantId = this.votes[this.restInd].id;
   }
 
   dislike() {
     console.log("Disliked " + this.votes[this.restInd].name);
     this.restInd = this.restIndCalc();
+    this.restaurantId = this.votes[this.restInd].id;
   }
 }
