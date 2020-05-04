@@ -58,14 +58,20 @@ export class TinderComponent implements OnInit {
       });
   }
   restIndCalc() {
-    const temp = Math.floor(Math.random() * 9);
-    for (let i = 0; i < 10; i++) {
-      if (this.restIndArr.includes(temp)) {
-        Math.floor(Math.random() * 9);
+    let temp = 0;
+    if (this.restIndArr.length !== 10) {
+      temp = Math.floor(Math.random() * 9);
+      for (let i = 0; i < 10; i++) {
+        if (this.restIndArr.includes(temp)) {
+          Math.floor(Math.random() * 9);
+        }
       }
+      this.restIndArr.push(temp);
     }
-
-    this.restIndArr.push(temp);
+    if (this.restIndArr.length === 10) {
+      temp = -1;
+      // this.restInd = temp;
+    }
     return temp;
     }
 
