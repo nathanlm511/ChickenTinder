@@ -60,17 +60,16 @@ export class TinderComponent implements OnInit {
   restIndCalc() {
     let temp = 0;
     if (this.restIndArr.length !== 10) {
-      temp = Math.floor(Math.random() * 9);
+      temp = Math.floor(Math.random() * 10);
       for (let i = 0; i < 10; i++) {
         if (this.restIndArr.includes(temp)) {
-          Math.floor(Math.random() * 9);
+          temp = Math.floor(Math.random() * 10);
         }
       }
       this.restIndArr.push(temp);
     }
-    if (this.restIndArr.length === 10) {
-      temp = -1;
-      // this.restInd = temp;
+    else {
+      return -1;
     }
     return temp;
     }
@@ -81,12 +80,23 @@ export class TinderComponent implements OnInit {
         console.log("Liked " +  this.votes[this.restInd].name);
       });
     this.restInd = this.restIndCalc();
-    this.restaurantId = this.votes[this.restInd].id;
+    if (this.restInd === -1) {
+      // pop up
+    }
+    else {
+      this.restaurantId = this.votes[this.restInd].id;
+    }
   }
 
   dislike() {
     console.log("Disliked " + this.votes[this.restInd].name);
     this.restInd = this.restIndCalc();
     this.restaurantId = this.votes[this.restInd].id;
+    if (this.restInd === -1) {
+      // pop up
+    }
+    else {
+      this.restaurantId = this.votes[this.restInd].id;
+    }
   }
 }
