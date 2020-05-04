@@ -15,6 +15,7 @@ export class RestaurantComponent implements OnInit {
   halfstars;
   image;
   imageNum;
+  transactions;
 
 
   constructor(private yelpService: YelpService) {
@@ -30,6 +31,7 @@ export class RestaurantComponent implements OnInit {
       this.isClosed();
       this.image = this.getImage();
       this.imageNum = 0;
+      this.transactions = new Array(this.info.transactions.length-1);
     });
   }
 
