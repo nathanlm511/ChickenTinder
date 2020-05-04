@@ -5,6 +5,7 @@ import {GroupService} from '../_services/group.service';
 import {YelpService} from '../_services/yelp.service';
 import {Group} from '../_models/group';
 import {Router} from '@angular/router';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @Component({
   selector: 'app-created-group',

@@ -1,0 +1,32 @@
+.winner {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+  font-family: "Brush Script MT";
+  font-size: 50pt;
+}
+
+.img {
+  padding: 10px 10px 10px 10px;
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 10px 10px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+.loc {
+  display: flex;
+  flex-direction: row;
+}
+
