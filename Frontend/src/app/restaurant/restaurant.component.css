@@ -1,45 +1,71 @@
 .page {
   display: flex;
   flex-direction: column;
-  padding: 10px 10px 10px 10px;
   justify-content: center;
   align-content: center;
   align-items: center;
+  padding: 15px;
 }
 
 .card {
+  display: flex;
+  flex-direction: row;
 }
 
 .image  {
   display: flex;
+  flex-direction: column;
   justify-items: center;
   justify-content: center;
   align-items: center;
 
 }
 
+.buttons {
+  display: flex;
+  align-content: space-between;
+}
+
+.mat-raised-button {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 .text{
   font-family: Verdana;
+  padding: 20px;
 }
-
 .info {
+  font-size: 25pt;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
 }
 .loc {
+  padding-top: 20px;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: row;
+  font-size: 20pt;
+  font-weight: normal;
 }
-
 .desc {
-  padding:  10px 10px 10px 10px;
+  font-size: 14pt;
+  font-weight: normal;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .rating {
   display: flex;
   flex-direction: row;
-  font-size: 12pt;
+  font-size: 14pt;
 }
 
 .phone {
   display: flex;
   flex-direction: row;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

@@ -1,28 +1,29 @@
-
-<div class="secret">
-  <div class="code">
-    SECRET CODE:
-    <div class="num">
-      {{passcode}}
+<div class="center">
+  <div class="secret">
+    <div class="code">
+      SECRET CODE:
+      <div class="num">
+        {{passcode}}
+      </div>
+    </div>
+    <div class="desc">
+      Tell your friends to enter this code to join your group!
     </div>
   </div>
-  <div class="desc">
-    Tell your friends to enter this code to join your group!
-  </div>
 </div>
-
-<p>{{greatestRestaurant}} is winning with {{greatestVotes}} out of {{numberOfUsers}}</p>
-
+<mat-divider></mat-divider>
 <app-restaurant [id]="restaurantId"></app-restaurant>
-
-
-
-<div *ngFor="let vote of votes">
-  id: {{ vote.id }} | name: {{ vote.name}} | numVotes: {{ vote.numVotes }}
+<!--
+<div class="results">
+  <h1> Results: </h1>
+  {{greatestRestaurant}} is winning with {{greatestVotes}} out of {{numberOfUsers}}
 </div>
-
-<p>{{restaurantId}}</p>
-
-<button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="like()">Like</button>
-
-<button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="dislike()">Dislike</button>
+-->
+<div class="buttons">
+  <button mat-raised-button color="green" (click)="like()" style="margin-right: 5px;">
+    <mat-icon>thumb_up</mat-icon>
+  </button>
+  <button mat-raised-button color="red" (click)="dislike()" style="margin-left: 5px;">
+    <mat-icon>thumb_down</mat-icon>
+  </button>
+</div>
