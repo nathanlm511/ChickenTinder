@@ -18,16 +18,19 @@ export class TinderComponent implements OnInit {
   numberOfUsers = 0;
   passcode = 0;
   restaurantId = 0;
+  restInd = 0;
+  restIndArr = [];
 
   constructor(private groupService: GroupService,
               private router: Router) { }
 
   ngOnInit() {
+    this.restInd = this.restIndCalc()
     this.greatestRestaurant = 'No restaurant';
     this.votes = JSON.parse(localStorage.getItem('currentGroup')).votes;
     this.numberOfUsers = JSON.parse(localStorage.getItem('currentGroup')).users.length + 1;
     this.passcode = JSON.parse(localStorage.getItem('currentGroup')).passcode;
-    this.restaurantId = JSON.parse(localStorage.getItem('currentGroup')).votes[5].id;
+    this.restaurantId = JSON.parse(localStorage.getItem('currentGroup')).votes[this.restInd].id;
 
     const loop = interval(5000)
       .pipe(
@@ -54,16 +57,34 @@ export class TinderComponent implements OnInit {
 
       });
   }
+  restIndCalc() {
+    let temp = 0;
+    if (this.restIndArr.length !== 10) {
+      temp = Math.floor(Math.random() * 9);
+      for (let i = 0; i < 10; i++) {
+        if (this.restIndArr.includes(temp)) {
+          Math.floor(Math.random() * 9);
+        }
+      }
+      this.restIndArr.push(temp);
+    }
+    if (this.restIndArr.length === 10) {
+      temp = -1;
+      // this.restInd = temp;
+    }
+    return temp;
+    }
 
   like() {
-    this.groupService.addVote(JSON.parse(localStorage.getItem('currentGroup')).passcode, String(this.votes[0].id))
+    this.groupService.addVote(JSON.parse(localStorage.getItem('currentGroup')).passcode, String(this.votes[this.restInd].id))
       .subscribe(() => {
-        console.log("Liked " +  this.votes[0].name);
+        console.log("Liked " +  this.votes[this.restInd].name);
       });
+    this.restInd = this.restIndCalc();
   }
 
   dislike() {
-    console.log("Disliked " + this.votes[0].name);
+    console.log("Disliked " + this.votes[this.restInd].name);
+    this.restInd = this.restIndCalc();
   }
-
 }
