@@ -21,8 +21,7 @@ export class TinderComponent implements OnInit {
   restInd = 0;
   restIndArr = [];
 
-  constructor(private groupService: GroupService,
-              private router: Router) { }
+  constructor(private groupService: GroupService, private router: Router) { }
 
   ngOnInit() {
     this.restInd = this.restIndCalc()
@@ -81,7 +80,7 @@ export class TinderComponent implements OnInit {
       });
     this.restInd = this.restIndCalc();
     if (this.restInd === -1) {
-      // pop up
+
     }
     else {
       this.restaurantId = this.votes[this.restInd].id;
@@ -93,7 +92,7 @@ export class TinderComponent implements OnInit {
     this.restInd = this.restIndCalc();
     this.restaurantId = this.votes[this.restInd].id;
     if (this.restInd === -1) {
-      // pop up
+
     }
     else {
       this.restaurantId = this.votes[this.restInd].id;
