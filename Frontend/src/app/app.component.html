@@ -1,12 +1,3 @@
-<mat-toolbar *ngIf="isUser">
-  <button mat-button routerLink="/find">Home</button>
-
-  <button mat-button routerLink="/admin" *ngIf="isAdmin">Admin</button>
-
-  <button mat-button (click)="logout()">Logout </button>
-</mat-toolbar>
-
-
 <div>
   <router-outlet></router-outlet>
 </div>

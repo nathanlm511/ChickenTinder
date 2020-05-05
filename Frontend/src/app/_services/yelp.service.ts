@@ -26,8 +26,8 @@ export class YelpService {
       lat = data.coords.latitude;
       // @ts-ignore
       lng = data.coords.longitude;
-    });
-
+    })
+    .catch(data => console.log(data));
     return this.http.post<any>(`http://localhost:3000/yelp/getIds/`, {lat, lng, passcode})
       .pipe(map(res => {
         console.log(res);

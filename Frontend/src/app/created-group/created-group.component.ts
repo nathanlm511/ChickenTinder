@@ -6,6 +6,8 @@ import {YelpService} from '../_services/yelp.service';
 import {Group} from '../_models/group';
 import {Router} from '@angular/router';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {AuthService} from '../_services/auth.service';
+import {NotificationService} from '../_services/notification.service';
 
 @Component({
   selector: 'app-created-group',
@@ -18,7 +20,8 @@ export class CreatedGroupComponent implements OnInit {
 
   constructor(private groupService: GroupService,
               private yelpService: YelpService,
-              private router: Router) { }
+              private router: Router,
+              private notif: NotificationService) { }
 
   ngOnInit() {
     this.isHost = JSON.parse(localStorage.getItem('currentGroup')).host === JSON.parse(localStorage.getItem('currentUser')).username;
@@ -27,6 +30,14 @@ export class CreatedGroupComponent implements OnInit {
         startWith(0),
         switchMap(() => this.groupService.getGroup(JSON.parse(localStorage.getItem('currentGroup')).passcode)))
       .subscribe((group: Group) => {
+        // @ts-ignore
+        if (group.flag === 'failed') {
+          this.notif.showNotif("Host closed room", 'dismiss');
+          localStorage.removeItem('currentGroup');
+          loop.unsubscribe();
+          this.router.navigate(['find']);
+
+        }
         console.log(JSON.parse(localStorage.getItem('currentUser')).username);
         console.log(group);
         if (group.started === true) {
@@ -54,5 +65,18 @@ export class CreatedGroupComponent implements OnInit {
   }
 
   public leave(): void {
+    this.groupService.removeUser(JSON.parse(localStorage.getItem('currentUser')).username, JSON.parse(localStorage.getItem('currentGroup')).passcode)
+      .subscribe(() => {
+        localStorage.removeItem('currentGroup');
+        this.router.navigate(['find']);
+      });
+  }
+
+  public leaveAdmin(): void {
+    this.groupService.deleteGroup(JSON.parse(localStorage.getItem('currentGroup')).passcode)
+      .subscribe(() => {
+        localStorage.removeItem('currentGroup');
+        this.router.navigate(['find']);
+      });
   }
 }

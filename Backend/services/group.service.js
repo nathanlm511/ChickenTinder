@@ -15,7 +15,9 @@ module.exports = {
     startGroup,
     addRestaurantsToGroup,
     addVote,
-    setWinner
+    setWinner,
+    deleteGroup,
+    removeUser
 }
 
 async function joinGroup({ username, passcode }) {
@@ -118,4 +120,28 @@ async function setWinner({ winner, passcode }) {
         return null;
     }
 }
+
+async function deleteGroup({ passcode }) {
+    if (await Group.findOne({ passcode: passcode })) {
+        await Group.deleteMany({ passcode: passcode});
+        const group = await Group.findOne({ passcode: passcode });
+        return group;
+    }
+    else {
+        return null;
+    }
+}
+
+async function removeUser({ username, passcode }) {
+    if (await Group.findOne({ passcode: passcode })) {
+        await Group.updateOne({ passcode: passcode}, { $pullAll: {users: [username]}});
+        const group = await Group.findOne({ passcode: passcode });
+        return group;
+    }
+    else {
+        return null;
+    }
+}
+
+
 

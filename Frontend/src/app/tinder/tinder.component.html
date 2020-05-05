@@ -1,3 +1,11 @@
+<mat-toolbar>
+  <button mat-button color="primary" (click)="leaveAdmin()" *ngIf="isHost; else notAdmin">Leave group</button>
+  <ng-template #notAdmin><button mat-button color="primary" (click)="leave()" *ngIf="!isHost">Leave group</button></ng-template>
+
+  <button mat-button color="primary" (click)="logoutAdmin()" *ngIf="isHost; else notAdmin2">Logout</button>
+  <ng-template #notAdmin2><button mat-button color="primary" (click)="logout()" *ngIf="!isHost">Logout</button></ng-template>
+</mat-toolbar>
+
 <div class="center">
   <div class="secret">
     <div class="code">
@@ -20,10 +28,10 @@
 </div>
 -->
 <div class="buttons">
-  <button mat-raised-button color="green" (click)="like()" style="margin-right: 5px;">
+  <button mat-raised-button color="green" [disabled]="lastRestaurant" (click)="like()" style="margin-right: 5px;">
     <mat-icon>thumb_up</mat-icon>
   </button>
-  <button mat-raised-button color="red" (click)="dislike()" style="margin-left: 5px;">
+  <button mat-raised-button color="red" [disabled]="lastRestaurant" (click)="dislike()" style="margin-left: 5px;">
     <mat-icon>thumb_down</mat-icon>
   </button>
 </div>

@@ -16,7 +16,8 @@ import {NotificationService} from '../_services/notification.service';
 export class GroupFinderComponent implements OnInit {
 
   constructor(private matDialog: MatDialog, private router: Router,
-              private groupService: GroupService, private yelpService: YelpService) {
+              private groupService: GroupService, private yelpService: YelpService,
+              private authService: AuthService) {
 
   }
 
@@ -37,5 +38,10 @@ export class GroupFinderComponent implements OnInit {
           .then(data => data.subscribe(() => console.log("sent ids")));
         this.router.navigate(['group']);
       });
+  }
+
+  public logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

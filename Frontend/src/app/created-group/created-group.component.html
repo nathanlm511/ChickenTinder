@@ -37,8 +37,9 @@
       </div>
     </div>
     <div class="buttons">
-      <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="leave()">LEAVE</button>
-      <br>
+      <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="leaveAdmin()" *ngIf="isHost; else notAdmin">LEAVE</button>
+      <ng-template #notAdmin><button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="leave()" *ngIf="!isHost">LEAVE</button></ng-template>
+
       <button mat-raised-button style="font-size:20px;height: 50px;width:100px" color="primary" (click)="start()" *ngIf="isHost">START</button>
     </div>
 

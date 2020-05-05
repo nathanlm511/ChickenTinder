@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import {GroupService} from '../_services/group.service';
+import {NotificationService} from '../_services/notification.service';
 
 @Component({
   selector: 'app-dialog-body',
@@ -11,7 +12,9 @@ import {GroupService} from '../_services/group.service';
 export class DialogBodyComponent implements OnInit {
   code: number;
 
-  constructor(private router: Router, private dialogRef: MatDialogRef<DialogBodyComponent>, private groupService: GroupService) { }
+  constructor(private router: Router, private dialogRef: MatDialogRef<DialogBodyComponent>,
+              private groupService: GroupService,
+              private notif: NotificationService) { }
 
   ngOnInit(): void {
   }
@@ -21,7 +24,7 @@ export class DialogBodyComponent implements OnInit {
     this.groupService.joinGroup(JSON.parse(localStorage.getItem('currentUser')).username, this.code.toString())
       .subscribe(group => {
         if (group.flag) {
-          console.log("incorrect passsword");
+          this.notif.showNotif("Incorrect Password", 'dismiss');
         }
         else {
           this.router.navigate(['group']);

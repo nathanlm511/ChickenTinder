@@ -86,5 +86,29 @@ export class GroupService {
         }
       }));
   }
+
+  deleteGroup(passcode: string): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/groups/deletegroup`, {passcode})
+      .pipe(map(group => {
+        if (group && group.passcode) {
+          localStorage.setItem('currentGroup', JSON.stringify(group));
+          return group;
+        } else {
+          return {flag: "failed"};
+        }
+      }));
+  }
+
+  removeUser(username: string, passcode: string): Observable<any> {
+    return this.http.post<any>(`http://localhost:3000/groups/removeuser`, {username, passcode})
+      .pipe(map(group => {
+        if (group && group.passcode) {
+          localStorage.setItem('currentGroup', JSON.stringify(group));
+          return group;
+        } else {
+          return {flag: "failed"};
+        }
+      }));
+  }
 }
 

@@ -24,7 +24,9 @@ function jwt() {
             pathToRegexp('/yelp/getIds*'),
             '/yelp/getInfo',
             '/groups/addvote',
-            '/groups/setwinner'
+            '/groups/setwinner',
+            '/groups/deletegroup',
+            '/groups/removeuser'
         ]
     });}
 

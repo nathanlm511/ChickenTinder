@@ -8,7 +8,9 @@ module.exports = {
     getGroup,
     startGroup,
     addVote,
-    setWinner
+    setWinner,
+    deleteGroup,
+    removeUser
 };
 
 
@@ -53,6 +55,18 @@ function addVote(req, res, next) {
 
 function setWinner(req, res, next) {
     groupService.setWinner(req.body)
+        .then(group => res.json(group))
+        .catch(err => next(err));
+}
+
+function deleteGroup(req, res, next) {
+    groupService.deleteGroup(req.body)
+        .then(group => res.json(group))
+        .catch(err => next(err));
+}
+
+function removeUser(req, res, next) {
+    groupService.removeUser(req.body)
         .then(group => res.json(group))
         .catch(err => next(err));
 }

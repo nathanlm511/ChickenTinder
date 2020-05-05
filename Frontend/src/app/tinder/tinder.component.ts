@@ -4,6 +4,9 @@ import {startWith, switchMap} from 'rxjs/operators';
 import {Group} from '../_models/group';
 import {GroupService} from '../_services/group.service';
 import {Router} from '@angular/router';
+import {NotificationService} from '../_services/notification.service';
+import {AuthService} from '../_services/auth.service';
+
 
 @Component({
   selector: 'app-tinder',
@@ -12,6 +15,9 @@ import {Router} from '@angular/router';
 })
 export class TinderComponent implements OnInit {
   votes = [];
+
+  lastRestaurant = false;
+  isHost;
 
   greatestRestaurant = 'No restaurant';
   greatestVotes = 0;
@@ -22,9 +28,12 @@ export class TinderComponent implements OnInit {
   restIndArr = [];
 
   constructor(private groupService: GroupService,
-              private router: Router) { }
+              private router: Router,
+              private notif: NotificationService,
+              private authService: AuthService) { }
 
   ngOnInit() {
+    this.isHost = JSON.parse(localStorage.getItem('currentGroup')).host === JSON.parse(localStorage.getItem('currentUser')).username;
     this.restInd = this.restIndCalc()
     this.greatestRestaurant = 'No restaurant';
     this.votes = JSON.parse(localStorage.getItem('currentGroup')).votes;
@@ -37,8 +46,17 @@ export class TinderComponent implements OnInit {
         startWith(0),
         switchMap(() => this.groupService.getGroup(JSON.parse(localStorage.getItem('currentGroup')).passcode)))
       .subscribe((group: Group) => {
+        // @ts-ignore
+        if (group.flag) {
+          this.notif.showNotif("Host closed room", 'dismiss');
+          localStorage.removeItem('currentGroup');
+          loop.unsubscribe();
+          this.router.navigate(['find']);
+        }
         console.log(group);
         const curVotes = group.votes;
+
+        this.numberOfUsers = group.users.length;
 
         for (let i = 0; i < curVotes.length; i++) {
 
@@ -77,11 +95,11 @@ export class TinderComponent implements OnInit {
   like() {
     this.groupService.addVote(JSON.parse(localStorage.getItem('currentGroup')).passcode, String(this.votes[this.restInd].id))
       .subscribe(() => {
-        console.log("Liked " +  this.votes[this.restInd].name);
       });
     this.restInd = this.restIndCalc();
     if (this.restInd === -1) {
-      // pop up
+      this.notif.showNotif("Visited all possible restaurants", 'dismiss');
+      this.lastRestaurant = true;
     }
     else {
       this.restaurantId = this.votes[this.restInd].id;
@@ -89,14 +107,47 @@ export class TinderComponent implements OnInit {
   }
 
   dislike() {
-    console.log("Disliked " + this.votes[this.restInd].name);
     this.restInd = this.restIndCalc();
-    this.restaurantId = this.votes[this.restInd].id;
     if (this.restInd === -1) {
-      // pop up
+      this.notif.showNotif("Visited all possible restaurants", 'dismiss');
+      this.lastRestaurant = true;
     }
     else {
       this.restaurantId = this.votes[this.restInd].id;
     }
+  }
+
+  leave(): void {
+    this.groupService.removeUser(JSON.parse(localStorage.getItem('currentUser')).username, JSON.parse(localStorage.getItem('currentGroup')).passcode)
+      .subscribe(() => {
+        localStorage.removeItem('currentGroup');
+        this.router.navigate(['find']);
+      });
+  }
+
+  leaveAdmin(): void {
+    this.groupService.deleteGroup(JSON.parse(localStorage.getItem('currentGroup')).passcode)
+      .subscribe(() => {
+        localStorage.removeItem('currentGroup');
+        this.router.navigate(['find']);
+      });
+  }
+
+  logout() {
+    this.groupService.removeUser(JSON.parse(localStorage.getItem('currentUser')).username, JSON.parse(localStorage.getItem('currentGroup')).passcode)
+      .subscribe(() => {
+        localStorage.removeItem('currentGroup');
+        this.authService.logout();
+        this.router.navigate(['/login']);
+      });
+  }
+
+  logoutAdmin() {
+    this.groupService.deleteGroup(JSON.parse(localStorage.getItem('currentGroup')).passcode)
+      .subscribe(() => {
+        localStorage.removeItem('currentGroup');
+        this.authService.logout();
+        this.router.navigate(['/login']);
+      });
   }
 }

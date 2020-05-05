@@ -9,5 +9,7 @@ router.post('/getgroup', groupController.getGroup);
 router.post('/startgroup', groupController.startGroup);
 router.post('/addvote', groupController.addVote);
 router.post('/setwinner', groupController.setWinner);
+router.post('/deletegroup', groupController.deleteGroup);
+router.post('/removeuser', groupController.removeUser);
 
 module.exports = router;
