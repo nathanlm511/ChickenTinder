@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(jwt());
 
-app.use('/', indexRouter);
+app.use('/', express.static(path.join(__dirname+'../../Frontend/dist/Frontend')));
 app.use('/users', usersRouter);
 app.use('/groups', groupRouter);
 app.use('/yelp', yelpRouter);

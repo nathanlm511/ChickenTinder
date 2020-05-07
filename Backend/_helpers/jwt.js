@@ -26,7 +26,8 @@ function jwt() {
             '/groups/addvote',
             '/groups/setwinner',
             '/groups/deletegroup',
-            '/groups/removeuser'
+            '/groups/removeuser',
+            pathToRegexp('/*')
         ]
     });}
 
