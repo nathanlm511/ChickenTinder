@@ -1,10 +1,9 @@
 # ChickenTinder
 
-1. Git clone the repo
-2. CD into the backend folder 
-3. type in "npm i" in terminal to install node modules
-4. type in "npm start" in terminal to start the backend server
+When you’re having a tough time deciding on a place to eat, you and your friends can go onto Chicken Tinder to
+make the decision process easy and fun! Just create a group and have all of your friends use the room code to join.
+Using geolocation, nearby restaurants show up on your screens with pictures, menus, prices, and descriptions. 
+You can then swipe right on restaurants you're interested in, or swipe left on restaurants you would like to pass. 
+Once a certain number of people have swiped right on the same restaurant, everyone's screens will display the voted
+restaurant. An anonymous, fair, and fun voting process!
 
-5. CD into the frontend folder
-6. type in "npm i" in terminal to install node modules
-7. type in "ng serve" in terminal to start the frontend
