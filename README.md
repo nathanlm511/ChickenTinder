@@ -11,6 +11,8 @@ restaurant. An anonymous, fair, and fun voting process!
 
 **Technologies:** Angular, MongoDB, NodeJS, the Yelp API
 
+---
+
 **Photos:**
 ![Chicken Tinder cover photo](https://github.com/nathanlm511/ChickenTinder/blob/master/Images/group.png)
 ![Chicken Tinder cover photo](https://github.com/nathanlm511/ChickenTinder/blob/master/Images/tinder.png)
